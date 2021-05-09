@@ -68,6 +68,8 @@
 (setq org-agenda-inhibit-startup t)
 (setq org-agenda-skip-unavailable-files t)
 (setq org-agenda-skip-scheduled-if-done t)
+(setq org-agenda-use-tag-inheritance nil)
+(setq org-agenda-dim-blocked-tasks nil)
 
 ;; Use current window for agenda
 (setq org-agenda-window-setup 'current-window)
@@ -89,12 +91,7 @@
 ;; Save Org buffers after refiling!
 (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
-(setq org-agenda-files (list "~/org/inbox.org"
-			     "~/org/habit.org"
-			     "~/org/dates.org"
-			     "~/org/finances.org"
-			     "~/org/calendar.org"
-			     "~/org/weather.org"
+(setq org-agenda-files (list  "~/org/calendar.org"
 			     "~/org/life.org"))
 (setq org-capture-templates
       '(
@@ -119,8 +116,8 @@
 
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
-(with-eval-after-load 'org
-  (bind-key "C-c C-f" #'browse-url-firefox org-mode-map))
+
+(add-hook 'after-init-hook 'org-agenda-list)
 
 (use-package project
   :bind
@@ -241,6 +238,9 @@
  ("C-c C-f" . browse-url-firefox)
  ("C-c w" . eww)
  )
+
+(load-theme 'tango-dark)
+(set-face-background 'default nil (selected-frame))
 
 (setq gc-cons-threshold 16777216
       gc-cons-percentage 0.1)
