@@ -38,7 +38,6 @@
 	    (dired-hide-details-mode)))
 (setq dired-dwim-target t)
 
-
 (use-package magit
   :straight
   (magit
@@ -59,7 +58,6 @@
    :repo "tarsius/minions")
   :init (minions-mode 1))
 
-
 (setq org-use-speed-commands t)
 (setq org-confirm-babel-evaluate 'nil)
 (setq org-todo-keywords
@@ -73,13 +71,6 @@
 
 ;; Use current window for agenda
 (setq org-agenda-window-setup 'current-window)
-
-;; More space around today and the fortnight
-(setq org-agenda-span 14)
-(setq org-agenda-start-day "-3d")
-
-;; make images smaller
-(setq org-image-actual-width (/ (display-pixel-width) 3))
 
 ;; Don't adapt content
 (setq org-adapt-indentation nil)
@@ -97,29 +88,6 @@
 	("work.org" :maxlevel . 2)))
 ;; Save Org buffers after refiling!
 (advice-add 'org-refile :after 'org-save-all-org-buffers)
-
-;; Set org html output
-(setq org-html-html5-fancy t
-      org-html-doctype "html5")
-
-;; Configure custom agenda views
-(setq org-agenda-custom-commands
-      '(("d" "Dashboard"
-	 ((agenda "" ((org-agenda-span 5)(org-deadline-warning-days 7)))
-	  (todo "NEXT"((org-agenda-overriding-header "Next Tasks")))))
-	("y" "Daily habits"
-	 ((agenda ""))
-	 ((org-agenda-show-log t)
-	  (org-agenda-ndays 7)
-	  (org-agenda-log-mode-items '(state))
-	  (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp ":DAILY:"))))
-	("h" tags "+@home")
-	("m" tags "+@mac")
-	("p" tags "+@phone")
-	("e" tags "+@errand")
-	("n" "Next Tasks" ((todo "NEXT" ((org-agenda-overriding-header "Next Tasks")(org-agenda-files '("~/org/life.org"))))))
-	("w" "Next Work Tasks" ((todo "NEXT" ((org-agenda-overriding-header "Next Tasks")(org-agenda-files '("~/org/work.org"))))))
-	))
 
 (setq org-agenda-files (list "~/org/inbox.org"
 			     "~/org/habit.org"
