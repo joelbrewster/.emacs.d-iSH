@@ -50,13 +50,13 @@
 	  (lambda ()
 	    (setq left-fringe-width 8)))
 
-(use-package minions
-  :straight
-  (minions
-   :type git
-   :host github
-   :repo "tarsius/minions")
-  :init (minions-mode 1))
+;;;(use-package minions
+;;;  :straight
+;;;  (minions
+;;;   :type git
+;;;   :host github
+;;;   :repo "tarsius/minions")
+;;;  :init (minions-mode 1))
 
 (setq org-use-speed-commands t)
 (setq org-confirm-babel-evaluate 'nil)
